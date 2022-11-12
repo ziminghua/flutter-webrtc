@@ -218,7 +218,7 @@ internal class SimulcastVideoEncoderFactoryWrapper(
     private val native: SimulcastVideoEncoderFactory
 
     init {
-        val hardwareVideoEncoderFactory = HardwareVideoEncoderFactory(
+        val hardwareVideoEncoderFactory = DgbVideoEncoderFactory(
             sharedContext, enableIntelVp8Encoder, enableH264HighProfile
         )
         primary = StreamEncoderWrapperFactory(hardwareVideoEncoderFactory)
