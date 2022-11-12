@@ -82,7 +82,7 @@ public class DgbVideoEncoderFactory extends DefaultVideoEncoderFactory {
                 int keyFrameIntervalSec = 20;
                 //避免hisi解码器收到PLI造成编码卡死的问题
                 if (info.getName().contains("hisi")){
-                    keyFrameIntervalSec = 2;
+                    keyFrameIntervalSec = 1;
                 }
                 Logging.d(DgbVideoEncoderFactory.class.getSimpleName(), String.format("use customize params create encoder by %s..............", info.getName()));
                 String codecName = info.getName();
