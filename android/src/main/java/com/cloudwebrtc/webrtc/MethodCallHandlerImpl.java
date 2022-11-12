@@ -705,13 +705,6 @@ public class MethodCallHandlerImpl implements MethodCallHandler, StateProvider {
         }
         break;
       }
-      case "addSubStream": {
-        String srcTrackId = call.argument("srcTrackId");
-        String targetPeerConnectionId = call.argument("targetPeerConnectionId");
-        addSubStream(srcTrackId, targetPeerConnectionId);
-        result.success(null);
-        break;
-      }
       default:
         result.notImplemented();
         break;
