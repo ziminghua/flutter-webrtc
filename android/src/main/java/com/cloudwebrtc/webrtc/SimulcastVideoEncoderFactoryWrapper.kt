@@ -1,5 +1,6 @@
 package com.cloudwebrtc.webrtc
 
+import android.util.Log
 import org.webrtc.*
 import java.util.concurrent.Callable
 import java.util.concurrent.ExecutorService
@@ -106,7 +107,14 @@ internal class SimulcastVideoEncoderFactoryWrapper(
             //     |    lossNotification=${settings.capabilities.lossNotification}
             // """.trimMargin()
             //     }
-                return@Callable encoder.initEncode(settings, callback)
+                var newHeight = settings.height / 16 * 16
+                var newWith = settings.width / 16 * 16
+                var newSetting = VideoEncoder.Settings(settings.numberOfCores, newWith, newHeight, settings.startBitrate,
+                        settings.maxFramerate, settings.numberOfSimulcastStreams, settings.automaticResizeOn);
+                Log.d("SimulcastVideoEncoderFactoryWrapper", "orginal:" + settings.width + " " +  settings.height +
+                        ",new:" + newSetting.width + " " + newSetting.height)
+                streamSettings = newSetting
+                return@Callable encoder.initEncode(newSetting, callback)
             })
             return future.get()
         }
